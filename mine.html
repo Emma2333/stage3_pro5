@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css" >
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        #container{
+            position: relative;
+        }
+        #main{
+            border: 2px solid rgb(185,197,213);
+            position: absolute;
+            top: 0px;
+            left:0px
+        }
+        #main tr td{
+            width: 50px;
+            height: 50px;
+            border:1px solid rgb(185,197,213);
+        }
+
+        #control{
+            position: absolute;
+            top: 580px;
+            left:50px;
+        }
+        #qizi{
+            width: 50px;
+            height: 50px;
+            background: rgb(227,229,237);
+            position: absolute;
+            top: 471px;
+            left: 471px;
+        }
+        .turnLef{
+            animation:turnLef 3s;
+            animation-fill-mode: forwards;/*forwards是必须的，表示转动后显示动画100%的状态。如果不加forwards，
+            则需要在给box加一个transform: rotate(N deg)的CSS，否则box会在转动后变为朝上。*/
+        }
+        @keyframes turnLef {
+            0% {
+                border-radius: 0;
+                transform: rotate(0deg);
+            }
+            33% {
+                border-radius: 50%;
+                transform: rotate(0deg);
+            }
+            67% {
+                border-radius: 50%;
+                transform: rotate(-90deg);
+            }
+            100% {
+                border-radius: 0;
+                transform: rotate(-90deg);
+            }
+        }
+        .turnRig{
+            animation: turnRig 3s;
+            animation-fill-mode: forwards;
+        }
+        @keyframes turnRig {
+            0% {
+                border-radius: 0;
+                transform: rotate(0deg);
+            }
+            33% {
+                border-radius: 50%;
+                transform: rotate(0deg);
+            }
+            67% {
+                border-radius: 50%;
+                transform: rotate(90deg);
+            }
+            100% {
+                border-radius: 0;
+                transform: rotate(90deg);
+            }
+        }
+        .turnBac{
+            animation: turnBac 3s;
+            animation-fill-mode: forwards;
+        }
+        @keyframes turnBac {
+            0% {
+                border-radius: 0;
+                transform: rotate(0deg);
+            }
+            33% {
+                border-radius: 50%;
+                transform: rotate(0deg);
+            }
+            67% {
+                border-radius: 50%;
+                transform: rotate(180deg);
+            }
+            100% {
+                border-radius: 0;
+                transform: rotate(180deg);
+            }
+        }
+
+        #direction{
+            width: 15px;
+            height: 50px;
+            background: rgb(185,197,213);
+            position: absolute;
+        }
+
+    </style>
+    <title>小滑块</title>
+</head>
+<body>
+    <div id="container">
+        <table id="main"cellpadding="0" cellspacing="0">
+            <tr>
+                <td ></td>   <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
+            </tr>
+            <tr>
+                <td></td>   <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
+            </tr>
+            <tr>
+                <td></td>   <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
+            </tr>
+            <tr>
+                <td></td>   <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
+            </tr>
+            <tr>
+                <td></td>   <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
+            </tr>
+            <tr>
+                <td></td>   <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
+            </tr>
+            <tr>
+                <td></td>   <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
+            </tr>
+            <tr>
+                <td></td>   <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
+            </tr>
+            <tr>
+                <td></td>   <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
+            </tr>
+            <tr>
+                <td></td>   <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="qizi">
+        <div id="direction"></div>
+    </div>
+
+    <div id="control">
+        <form>
+            <input type="text" name="ctrl" id="ctrl">
+            <button type="button"  id="btn">执行</button>
+            <label for="ctrl">
+                <br>GO：向蓝色边所面向的方向前进一格<br>
+                TUN LEF：向左转<br>
+                TUN RIG：向右转<br>
+                TUN BAC：向右转<br>
+                MOV LEF：方向转向屏幕左侧，并向屏幕的左侧移动一格<br>
+                MOV TOP：方向转向屏幕上面，向屏幕的上面移动一格<br>
+                MOV RIG：方向转向屏幕右侧，向屏幕的右侧移动一格<br>
+                MOV BOT：方向转向屏幕下面，向屏幕的下面移动一格</label>
+        </form>
+
+    </div>
+
+<script>
+    var btn=document.getElementById('btn');
+    /*qizi.className="";*/
+    btn.onclick=function(){
+        var order=document.getElementById('ctrl').value;
+        var qizi=document.getElementById('qizi');
+        var dirbox=document.getElementById('direction'),
+                T=qizi.offsetTop,
+                L=qizi.offsetLeft,
+                h=dirbox.offsetHeight,              /*offset的属性都是只读的！！！！*/
+                w=dirbox.offsetWidth,
+                t=dirbox.offsetTop,
+                l=dirbox.offsetLeft;
+        var x=Math.abs(h-w);
+        var odir=dir(h,w,t,l);
+        switch (order){
+            case "GO":{
+                /*GO是对棋子的加减   turn是对于方向小方块的改变*/
+                switch (odir){
+                    case "top":qizi.style.top=T-52+"px";break;
+                    case "lef":qizi.style.left=L-52+"px";break;
+                    case "bot":qizi.style.top=T+52+"px";break;
+                    case "rig":qizi.style.left=L+52+"px";break;
+                }
+                break;
+            }
+            case "TUN LEF":{
+                changeDir(dirbox,h,w);    /*只要是90度转弯的，一定是进行宽高互换*/
+                switch (odir){
+                    case "top":break;
+                    case "lef":{
+                        dirbox.style.left=0+"px";
+                        dirbox.style.top=x+"px";
+                        break;
+                    }
+                    case "bot":{
+                        dirbox.style.left=x+"px";
+                        dirbox.style.top=0+"px";
+                        break;
+                    }
+                    case "rig":{
+                        dirbox.style.left=0+"px";
+                        dirbox.style.top=0+"px";
+                        break;
+                    }
+
+                }
+                break;
+            }
+            case "TUN RIG":{
+                changeDir(dirbox,h,w);
+                switch (odir){
+                    case "top":dirbox.style.left=x+'px';break;
+                    case "bot":dirbox.style.top=0+'px';break;
+                    case "lef":break;
+                    case "rig":dirbox.style.top=x+'px';
+                        dirbox.style.left=0+'px';break;
+                };break;
+            }
+            case "TUN BAC":{
+                switch (odir){
+                    case "top":dirbox.style.top=x+'px';break;
+                    case "bot":dirbox.style.top=0+'px';break;
+                    case "lef":dirbox.style.left=x+'px';break;
+                    case "rig":dirbox.style.left=0+'px';break;
+                };break;
+            }
+            case "MOV LEF":{
+                switch (odir){
+                    case "top":{
+                        qizi.className="turnLef"
+                        qizi.style.left=L-52+"px";
+                        break;
+                    }
+                    case "bot":{
+                        qizi.className="turnRig"
+                        qizi.style.left=L-52+"px";
+                        break;
+                    }
+                    case "lef":{
+                        qizi.style.left=L-52+"px";
+                        break;
+                    }
+                    case "rig":{
+                        qizi.className="turnBac"
+                        qizi.style.left=L-52+"px";
+                        break;
+                    }
+                }
+                odir="lef";
+                break;
+            }
+            case "MOV TOP":{
+                switch (odir){
+                    case "top":{
+                        qizi.style.top=T-52+"px";
+                        break;
+                    }
+                    case "bot":{
+                        qizi.className="turnBac"
+                        qizi.style.top=T-52+"px";
+                        break;
+                    }
+                    case "lef":{
+                        qizi.className="turnRig"
+                        qizi.style.top=T-52+"px";
+                        break;
+                    }
+                    case "rig":{
+                        qizi.className="turnLef"
+                        qizi.style.top=T-52+"px";
+                        break;
+                    }
+                }
+                odir="top";
+                break;
+            }
+            case "MOV RIG":{
+                switch (odir){
+                    case "top":{
+                        qizi.className="turnRig"
+                        qizi.style.left=L+52+"px";
+                        break;
+                    }
+                    case "bot":{
+                        qizi.className="turnLef"
+                        qizi.style.left=L+52+"px";
+                        break;
+                    }
+                    case "lef":{
+                        qizi.className="turnBac"
+                        qizi.style.left=L+52+"px";
+                        break;
+                    }
+                    case "rig":{
+                        qizi.style.left=L+52+"px";
+                        break;
+                    }
+                }
+                odir="rig";
+                break;
+            }
+            case "MOV BOT":{
+                switch (odir){
+                    case "top":{
+                        qizi.className="turnBac"
+                        qizi.style.top=T+52+"px";
+                        break;
+                    }
+                    case "bot":{
+                        qizi.style.top=T+52+"px";
+                        break;
+                    }
+                    case "lef":{
+                        qizi.className="turnLef"
+                        qizi.style.top=T+52+"px";
+                        break;
+                    }
+                    case "rig":{
+                        qizi.className="turnRig"
+                        qizi.style.top=T+52+"px";
+                        break;
+                    }
+                }
+                odir="bot";
+                break;
+            }
+        }
+        if(qizi.offsetTop<1) qizi.style.top='2px';
+        if(qizi.offsetTop>472) qizi.style.top='473px';
+        if(qizi.offsetLeft<1) qizi.style.left='2px';
+        if(qizi.offsetLeft>472) qizi.style.left='473px';
+    };
+
+
+    /*dirbox 宽高互换函数*/      /*offset的属性都是只读的！！！！*/
+    function changeDir(dirbox,h,w) {
+        dirbox.style.width=h+"px";
+        dirbox.style.height=w+"px";
+    }
+
+    /*检测方向函数*/
+    function dir(h,w,t,l) {
+        if(h<w){
+            alert("t or b")
+            if(t==0){
+                return "top";
+            }else{
+                return "bot"
+            }
+        }else{
+            alert("l or r")
+            if(l==0){
+                return "lef";
+            }else{
+                return "rig";
+            }
+        }
+    }
+
+</script>
+</body>
+</html>
