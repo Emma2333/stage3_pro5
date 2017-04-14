@@ -43,12 +43,19 @@
         @keyframes turnLef {
             0% {
                 border-radius: 0;
+                transform: rotate(0deg);
             }
-            50%{
+            33% {
                 border-radius: 50%;
+                transform: rotate(0deg);
+            }
+            67% {
+                border-radius: 50%;
+                transform: rotate(-90deg);
             }
             100% {
                 border-radius: 0;
+                transform: rotate(-90deg);
             }
         }
         .turnRig{
@@ -58,12 +65,19 @@
         @keyframes turnRig {
             0% {
                 border-radius: 0;
+                transform: rotate(0deg);
             }
-            50%{
+            33% {
                 border-radius: 50%;
+                transform: rotate(0deg);
+            }
+            67% {
+                border-radius: 50%;
+                transform: rotate(90deg);
             }
             100% {
                 border-radius: 0;
+                transform: rotate(90deg);
             }
         }
         .turnBac{
@@ -73,12 +87,19 @@
         @keyframes turnBac {
             0% {
                 border-radius: 0;
+                transform: rotate(0deg);
             }
-            50%{
+            33% {
                 border-radius: 50%;
+                transform: rotate(0deg);
+            }
+            67% {
+                border-radius: 50%;
+                transform: rotate(180deg);
             }
             100% {
                 border-radius: 0;
+                transform: rotate(180deg);
             }
         }
 
@@ -93,64 +114,65 @@
     <title>小滑块</title>
 </head>
 <body>
-    <div id="container">
-        <table id="main"cellpadding="0" cellspacing="0">
-            <tr>
-                <td ></td>   <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
-            </tr>
-            <tr>
-                <td></td>   <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
-            </tr>
-            <tr>
-                <td></td>   <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
-            </tr>
-            <tr>
-                <td></td>   <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
-            </tr>
-            <tr>
-                <td></td>   <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
-            </tr>
-            <tr>
-                <td></td>   <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
-            </tr>
-            <tr>
-                <td></td>   <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
-            </tr>
-            <tr>
-                <td></td>   <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
-            </tr>
-            <tr>
-                <td></td>   <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
-            </tr>
-            <tr>
-                <td></td>   <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
-            </tr>
-        </table>
-    </div>
+<div id="container">
+    <table id="main"cellpadding="0" cellspacing="0">
+        <tr>
+            <td ></td>   <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
+        </tr>
+        <tr>
+            <td></td>   <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
+        </tr>
+        <tr>
+            <td></td>   <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
+        </tr>
+        <tr>
+            <td></td>   <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
+        </tr>
+        <tr>
+            <td></td>   <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
+        </tr>
+        <tr>
+            <td></td>   <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
+        </tr>
+        <tr>
+            <td></td>   <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
+        </tr>
+        <tr>
+            <td></td>   <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
+        </tr>
+        <tr>
+            <td></td>   <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
+        </tr>
+        <tr>
+            <td></td>   <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
+        </tr>
+    </table>
+</div>
 
-    <div id="qizi">
-        <div id="direction"></div>
-    </div>
+<div id="qizi">
+    <div id="direction"></div>
+</div>
 
-    <div id="control">
-        <form>
-            <input type="text" name="ctrl" id="ctrl">
-            <button type="button"  id="btn">执行</button>
-            <label for="ctrl">
-                <br>GO：向蓝色边所面向的方向前进一格<br>
-                TUN LEF：向左转<br>
-                TUN RIG：向右转<br>
-                TUN BAC：向右转<br>
-                MOV LEF：方向转向屏幕左侧，并向屏幕的左侧移动一格<br>
-                MOV TOP：方向转向屏幕上面，向屏幕的上面移动一格<br>
-                MOV RIG：方向转向屏幕右侧，向屏幕的右侧移动一格<br>
-                MOV BOT：方向转向屏幕下面，向屏幕的下面移动一格</label>
-        </form>
+<div id="control">
+    <form>
+        <input type="text" name="ctrl" id="ctrl">
+        <button type="button"  id="btn">执行</button>
+        <label for="ctrl">
+            <br>GO：向蓝色边所面向的方向前进一格<br>
+            TUN LEF：向左转<br>
+            TUN RIG：向右转<br>
+            TUN BAC：向后转<br>
+            MOV LEF：方向转向屏幕左侧，并向屏幕的左侧移动一格<br>
+            MOV TOP：方向转向屏幕上面，向屏幕的上面移动一格<br>
+            MOV RIG：方向转向屏幕右侧，向屏幕的右侧移动一格<br>
+            MOV BOT：方向转向屏幕下面，向屏幕的下面移动一格</label>
+    </form>
 
-    </div>
+</div>
 
 <script>
     var btn=document.getElementById('btn');
+
     /*qizi.className="";*/
     btn.onclick=function(){
         var order=document.getElementById('ctrl').value;
@@ -164,8 +186,10 @@
                 l=dirbox.offsetLeft;
         var x=Math.abs(h-w);
         var odir=dir(h,w,t,l);
+        // console.log(odir)
         switch (order){
             case "GO":{
+                odir=dir(h,w,t,l);
                 /*GO是对棋子的加减   turn是对于方向小方块的改变*/
                 switch (odir){
                     case "top":qizi.style.top=T-52+"px";break;
@@ -219,14 +243,14 @@
             case "MOV LEF":{
                 switch (odir){
                     case "top":{
-                        qizi.className="turnLef"
+                        // qizi.className="turnLef"
                         qizi.style.left=L-52+"px";
                         changeDir(dirbox,h,w);
 
                         break;
                     }
                     case "bot":{
-                        qizi.className="turnRig"
+                        // qizi.className="turnRig"
                         qizi.style.left=L-52+"px";
                         changeDir(dirbox,h,w);
                         break;
@@ -236,7 +260,7 @@
                         break;
                     }
                     case "rig":{
-                        qizi.className="turnBac"
+                        // qizi.className="turnBac"
                         qizi.style.left=L-52+"px";
                         break;
                     }
@@ -252,18 +276,18 @@
                         break;
                     }
                     case "bot":{
-                        qizi.className="turnBac"
+                        // qizi.className="turnBac"
                         qizi.style.top=T-52+"px";
                         break;
                     }
                     case "lef":{
-                        qizi.className="turnRig"
+                        // qizi.className="turnRig"
                         qizi.style.top=T-52+"px";
                         changeDir(dirbox,h,w);
                         break;
                     }
                     case "rig":{
-                        qizi.className="turnLef"
+                        // qizi.className="turnLef"
                         qizi.style.top=T-52+"px";
                         changeDir(dirbox,h,w);
                         break;
@@ -276,19 +300,19 @@
             case "MOV RIG":{
                 switch (odir){
                     case "top":{
-                        qizi.className="turnRig"
+                        // qizi.className="turnRig"
                         qizi.style.left=L+52+"px";
                         changeDir(dirbox,h,w);
                         break;
                     }
                     case "bot":{
-                        qizi.className="turnLef"
+                        // qizi.className="turnLef"
                         qizi.style.left=L+52+"px";
                         changeDir(dirbox,h,w);
                         break;
                     }
                     case "lef":{
-                        qizi.className="turnBac"
+                        // qizi.className="turnBac"
                         qizi.style.left=L+52+"px";
                         break;
                     }
@@ -352,13 +376,16 @@
 
     /*检测方向函数*/
     function dir(h,w,t,l) {
+        console.log(h+","+w+","+t+","+l);
         if(h<w){
+            // alert("t or b")
             if(t==0){
                 return "top";
             }else{
                 return "bot"
             }
         }else{
+            // alert("l or r")
             if(l==0){
                 return "lef";
             }else{
